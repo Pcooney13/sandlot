@@ -4,6 +4,13 @@ module.exports = {
     fontFamily: {
       gotham: "Gotham",
     },
+    fontWeight: {
+      thin: "100",
+      light: "300",
+      normal: "400",
+      semibold: "600",
+      bold: "700",
+    },
     extend: {
       colors: {
         "off-white": "#F2F2F2",
@@ -13,6 +20,7 @@ module.exports = {
         "bright-orange": "#ffb600",
         "light-orange": "#fed7aa",
         navy: "#29385c",
+        "light-blue": "#c6daff",
         "navy-200": "#bcbbc8",
         teal: "#0c7489",
         purple: "#7f5e76",

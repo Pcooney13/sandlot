@@ -1,5 +1,23 @@
 window.addEventListener('load', function () {
 	/*
+		Nav Menu
+	**/
+	const hamburger = document.getElementById("hamburger");
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modal-close");
+    hamburger.addEventListener("click", function () {
+        modal.classList.remove("opacity-0");
+        modal.classList.remove("pointer-events-none");
+    });
+    modalClose.addEventListener("click", function () {
+        modal.classList.add("opacity-0");
+        modal.classList.add("pointer-events-none");
+	});
+
+
+
+
+	/*
 		Accordions open/close
 	**/
     var acc = document.getElementsByClassName("accordion");

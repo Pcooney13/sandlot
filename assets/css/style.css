@@ -1,10 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body, html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+
+.heading {
+    @apply bg-purple;
 }
+.heading-lg {
+    @apply text-3xl leading-8 font-bold sm:text-4xl;
+}
+.heading-xl {
+    @apply text-5xl;
+}
+
 .column-2 {
     column-count:2;
 }
@@ -32,9 +39,4 @@ strong {
 .hero h1>strong {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-@media (max-width:500px) {
-    .hero br {
-        display:none;
-    }
 }

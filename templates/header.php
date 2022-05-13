@@ -1,3 +1,5 @@
+<?php $menu = nav_walker('main-menu'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,25 +7,25 @@
   		<meta charset="UTF-8">
   		<meta http-equiv="X-UA-Compatible" content="IE=edge">
   		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  		<title>PACT Finance and Accounting</title>
+  		<title>PACT Finance & Accounting</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com"> 
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@500&display=swap" rel="stylesheet">
     	<?php wp_head(); ?>
 	</head>
-	<body class="text-black font-opensans font-light bg-gray-100">
+	<body class="text-black font-gotham font-light bg-gray-100">
 		<!-- ABOVE NAV -->
 		<div class="hidden md:block bg-white">
 			<div class="max-w-screen-xl mx-auto flex items-center">
-				<p class="py-y flex items-center opacity-75">
+				<p class="py-y text-navy flex items-center opacity-75">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
 					  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
 					</svg>
 					Call us: <a class="transition-all duration-300 ml-1 hover:text-orange" href="#">555-867-5309</a>
 				</p>
 				<div class="w-px h-4 bg-light-gray mx-4"></div>
-				<p class="py-y flex items-center opacity-75">
+				<p class="py-y text-navy flex items-center opacity-75">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
 					  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
 					  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -55,25 +57,58 @@
 				<?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
 			<?php endif;?>
 
-    		<div class="px-4 md:px-0 max-w-screen-xl mx-auto py-3 bg-navy text-white flex items-center">
-      			<a class="w-60 md:w-72 block" href="/">
+    		<div class="px-0 max-w-screen-xl mx-auto py-3 bg-navy text-white flex items-center">
+      			<a class="w-60 md:w-72 px-4 block" href="/">
         			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/pact-logo.png">
       			</a>
-      			<div class="hidden md:block ml-auto uppercase text-sm">					
-					<a href="/" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4 inline md:hidden lg:inline">Home</a>
-					<a href="/about" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4">About</a>
-					<a href="/services" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4">Services</a>
-					<a href="/success-stories" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4">Success Stories</a>
-					<a href="/testimonials" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4">Testimonials</a>
-					<a href="/blog" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4">Blog</a>
-					<a href="/contact" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4 inline md:hidden lg:inline">Contact</a>
+      			<div class="hidden md:block ml-auto font-[400] uppercase text-sm">					
+					<?php foreach ($menu as $key => $link) : 
+						if ($link->object_id == get_the_ID() || is_home() && $link->object_id == get_option('page_for_posts')) {
+							$active = 'text-bright-orange opacity-75 hover:opacity-100';
+						} else {
+							$active = '';
+						}
+						?>
+        				<a href="<?php echo $link->url; ?>" class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4 inline md:hidden lg:inline <?php echo $active; ?>">
+							<?php echo $link->title; ?>
+						</a>
+    				<?php endforeach; ?>
       			</div>
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto block md:hidden" viewBox="0 0 20 20" fill="currentColor">
-					<path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-				</svg>
+				<!-- Hamburger -->
+				<button id="hamburger" class="ml-auto py-2 px-4 block md:hidden">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+			  			<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+					</svg>					
+				</button>
         	</div>
+			<!-- Mobile Nav -->
+			<div id="modal" style="background:rgba(0,0,0,0.5); z-index:999" class="h-full w-full flex justify-center fixed top-0 transition-all duration-300 opacity-0 pointer-events-none">
+				<div style="height:calc(100vh-1rem)" class="bg-white mt-3 w-full m-2 rounded-md">
+					
+					<div class="flex justify-end">
+						<button id="modal-close" class="p-2">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</button>
+					</div>
+					<div class="flex flex-col">
+						<?php foreach ($menu as $key => $link) : 
+							if ($link->object_id == get_the_ID() || is_home() && $link->object_id == get_option('page_for_posts')) {
+								$active = 'text-bright-orange opacity-75 hover:opacity-100';
+							} else {
+								$active = '';
+							}
+							?>
+        					<a href="<?php echo $link->url; ?>" class="tracking-wider transition-all duration-300 hover:text-bright-orange pl-4 inline md:hidden lg:inline <?php echo $active; ?>">
+								<?php echo $link->title; ?>
+							</a>
+    					<?php endforeach; ?>
+					</div>
+				</div>
+			</div>
   		</div>
-		<?php if (has_post_thumbnail()) : 
+		<?php if (!is_single() && has_post_thumbnail()) : 
 			if (is_home()) {
 				$page_id = 17;
 			} else {
@@ -85,8 +120,8 @@
 			
 			<div class="hero w-full m-0 relative p-0 bg-cover flex flex-col justify-center py-20 md:py-0 md:aspect-blog bg-center bg-bottom" style="background-image:url(<?php echo get_the_post_thumbnail_url($page_id); ?>">
 				<div class="container max-w-6xl mx-auto mb-16 md:mb-32">
-			        <h1 class="mx-6 relative z-20 font-gotham text-white font-bold drop-shadow-md text-2xl lg:text-6xl mb-2"><?php echo $title; ?></h1>
-			        <h1 class="mx-6 text-white z-50 relative font-normal drop-shadow-md text-lg lg:text-2xl tracking-wider lg:mb-6"><?php echo $subtitle; ?></h1>			        
+			        <h1 class="mx-6 relative z-10 font-gotham text-white font-bold drop-shadow-md text-2xl lg:text-6xl mb-2"><?php echo $title; ?></h1>
+			        <h1 class="mx-6 text-white z-10 relative font-normal drop-shadow-md text-lg lg:text-2xl tracking-wider lg:mb-6"><?php echo $subtitle; ?></h1>			        
 			    </div>
 			    <div class="absolute top-0 bg-navy opacity-50 h-full w-full"></div>
 			</div>

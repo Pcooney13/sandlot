@@ -1,4 +1,4 @@
-<section id="request-form" class="py-12">
+<section id="request-form" class="py-12 bg-light-blue">
 	<div class="max-w-screen-lg mx-auto flex items-center">
 		<div class="hidden lg:block flex-1">
 			<svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -6,8 +6,9 @@
 			</svg>
 		</div>
 		<div class="ml-auto px-4 md:px-0">
-			<h2 class="font-black leading-tight text-xl md:text-3xl mb-1">Request an Appointment</h2>
-			<p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum unde molestias.</p>
+			
+			<h2 class="font-bold leading-tight text-xl md:text-3xl">Request an Appointment</h2>
+			<p class="text-lg mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum unde molestias.</p>
 			<div class="flex flex-col md:flex-row items-center">
 				<input class="text-xl px-6 py-3 rounded-full bg-white mb-4 w-full md:w-56 mr-4" placeholder="Name" type="text"/>
 				<input class="text-xl px-6 py-3 rounded-full bg-white mb-4 w-full md:w-56 mr-4" placeholder="Phone" type="tel"/>
@@ -57,9 +58,9 @@
 			</div>
 			<div class="text-white flex flex-col mb-12 md:mb-0">
 				<a href="#" target="_blank" class="text-xl transition-all duration-300 hover:text-bright-orange text-white py-2">Blog</a>
-				<a href="#" target="_blank" class="text-xl transition-all duration-300 hover:text-bright-orange text-white py-2">Office Location</a>
 				<a href="#" target="_blank" class="text-xl transition-all duration-300 hover:text-bright-orange text-white py-2">Contact Us</a>
 				<a href="#" target="_blank" class="text-xl transition-all duration-300 hover:text-bright-orange text-white py-2">Testimonials</a>
+				<a href="#" target="_blank" class="text-xl transition-all duration-300 hover:text-bright-orange text-white py-2">Launch Partnership</a>
 			</div>
 		</div>
 		<?php wp_footer(); ?>
