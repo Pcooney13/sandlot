@@ -1,4 +1,9 @@
 <?php
     require_once(get_template_directory().'/functions/theme-support.php'); 
+    require_once(get_template_directory().'/functions/custom.php'); 
+    require_once(get_template_directory().'/functions/register-blocks.php'); 
     require_once(get_template_directory().'/functions/enqueue.php'); 
+    require_once(get_template_directory().'/functions/admin-styles.php'); 
+    require_once(get_template_directory().'/functions/forms.php'); 
+    require_once(get_template_directory().'/functions/events-calendar.php'); 
 ?>

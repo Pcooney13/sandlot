@@ -2,41 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
-.heading {
-    @apply bg-purple;
-}
-.heading-lg {
-    @apply text-3xl leading-8 font-bold sm:text-4xl;
-}
-.heading-xl {
-    @apply text-5xl;
-}
 
-.column-2 {
-    column-count:2;
-}
+/* 
+** Custom TW styles
+*/
 
-#nav {
-    z-index: 999;
-}
-strong {
-    font-weight: bold;
-}
-.accordion {
-    margin: 0 !important;
-}
+#nav { z-index: 999; }
 
-.dropdown .panel {
-    padding: 0 18px;
-}
+/* Remove sticky WP nav */
+#wpadminbar { @apply absolute; }
 
-.panel {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-}
+/* Headings */
+.heading { @apply text-xl leading-6 font-bold sm:text-2xl; }
+.heading-lg { @apply text-2xl sm:text-4xl leading-8 font-bold; }
+.heading-xl { @apply text-3xl sm:text-5xl leading-8 font-bold; }
+.sub-heading { @apply text-lg sm:text-xl leading-6 text-slate-500; }
+.sub-heading-bold { @apply text-xl text-gray-700 leading-tight font-bold; }
 
-.hero h1>strong {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+/* Text areas */
+.text { @apply font-thin lg:text-lg text-gray-700; }
+.sub-text { @apply text-base text-gray-500; }
+strong { @apply font-normal; }
+
+/* WYSIWYG div wrapper */
+.lp-text p { @apply font-thin text-gray-700 mb-8; }
+
+/* Buttons */
+.btn { @apply text-white inline-block font-normal border border-solid border-indigo-600 bg-indigo-600 transition-all duration-300 hover:bg-black py-3 px-6 rounded-full; }
+.btn-white { @apply text-indigo-600 inline-block font-normal border-2 border-solid border-indigo-600 transition-all duration-300 hover:bg-black hover:text-white py-3 px-6 rounded-full; }
+.bg { @apply bg-200 bg-center bg-gradient-to-l from-indigo-600 to-purple-500 uppercase hover:bg-left group-hover:bg-left inline-flex items-center justify-center shadow-md transition-all duration-300 text-white; }
+
+/* Accordion (JS used) */
+.accordion { margin: 0 !important; }
+.dropdown .panel { padding: 0 18px; }
+.panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.panel-open { max-height: auto; overflow: hidden; transition: max-height 0.3s ease-out; }
+
+/* Progress Bar (JS used) */
+#progress-bar > div { -webkit-mask: linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0); }
+
+/* Hamburger Nav Animation (JS used) */
+#nav-icon.open span:nth-child(1) { top: 14px; width: 0%; left: 50%; }
+#nav-icon.open span:nth-child(2) { -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg); transform: rotate(45deg); }
+#nav-icon.open span:nth-child(3) { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); }
+#nav-icon.open span:nth-child(4) { top: 14px; width: 0%; left: 50%; }
+
+/* Slider hide horizontal scroll bar */
+.slider { -ms-overflow-style: none; scrollbar-width: none; }
+.slider::-webkit-scrollbar { display: none; }
+
+
+/* 
+** Gravity Forms 
+*/
+
+/* Basics */
+.gform_wrapper { @apply max-w-2xl mx-auto;}
+.gform_title { @apply text-2xl leading-8 font-bold sm:text-4xl mb-4; }
+.gform_fields {@apply flex flex-wrap gap-x-4 gap-y-8 mb-8; }
+.gform_body input, .gform_body textarea {@apply p-2 rounded-lg border border-slate-300 font-light; }
+.gform_body input[type=file] {@apply border-none pl-0 pt-0; }
+.gform_body .gfield {@apply w-full; }
+.gform_body .gfield {@apply w-full; }
+.gform_body .gfield.gfield--width-half {@apply flex-1;}
+.gform_body label {@apply font-normal block ml-1 mb-1; }
+.gform_body legend {@apply font-normal block ml-1 mb-1; }
+.gform_body input.large {@apply w-full; }
+.gform_fileupload_rules {@apply text-indigo-600 font-normal text-sm; }
+.gform_body textarea {@apply w-full; }
+.gform_fields input,
+.gform_fields textarea { @apply focus:outline-none focus:ring-indigo-600 focus:ring-1 focus:ring-offset-1 focus:ring-offset-indigo-600; }
+
+/* Buttons */
+.gform_body .gchoice,
+.gform_body .ginput_container_consent {@apply flex; }
+.gform_body .gchoice label,
+.gform_body .ginput_container_consent label {@apply font-light; }
+.gform_body .gchoice input,
+.gform_body .ginput_container_consent input {@apply mt-1 mr-1; }
+
+/* Name */
+.gform_body .ginput_complex {@apply flex flex-wrap gap-4; }
+.gform_body .ginput_container_name span {@apply flex flex-col flex-1; }
+
+
+/* 
+** Posts/Events Content posted from WP 
+*/
+#post-content p { @apply font-thin text-lg leading-blog leading-normal py-2; }
+#post-content p:empty {@apply hidden; }
+#post-content a { @apply text-indigo-600 font-light transition-all duration-300; }
+#post-content a:hover { @apply text-black; }
+#post-content ol, #post-content ul { @apply font-thin leading-normal pl-6 py-1; }
+#post-content ol { @apply list-decimal; }
+#post-content ul { @apply list-disc; }
+#post-content li { @apply leading-tight py-1; }
+#post-content img { @apply w-full rounded-lg my-2; }
+#post-content blockquote {  @apply font-normal bg-indigo-500 bg-opacity-10 border-l-4 py-2 border-indigo-600 italic px-6 my-2; }
+#post-content cite {  @apply block font-normal text-base; }
+
+
+/* 
+** EVENTS 
+*/
+.tribe-events-c-top-bar__nav-list-item a svg path{ @apply text-indigo-600 fill-current !important; }
+.tribe-events .tribe-events-l-container { @apply px-0 py-0 !important; }
+.tribe-common .tribe-events-c-subscribe-dropdown__button { @apply flex items-center !important; }
+.tribe-common .tribe-events-c-subscribe-dropdown__container { @apply flex-row !important; }
+.tribe-common .tribe-events-c-subscribe-dropdown__export-icon { @apply hidden !important; }
+.tribe-common .tribe-events-c-subscribe-dropdown__button-icon { @apply mb-0.5 !important; }
+.tribe-common .tribe-events-c-subscribe-dropdown__content { @apply absolute z-50 !important; }
+.tribe_events iframe { @apply h-full !important;  }
+#tribe-events-pg-template { @apply p-0 m-0 max-w-none !important; }
+/* EVENTS (day 2) */
+.tribe-events-c-subscribe-dropdown__button { @apply text-indigo-600 rounded-full bg-white border-solid border py-2 px-4 transition-all duration-300 hover:text-white hover:bg-indigo-600 border-indigo-600 !important; }
+.tribe-events svg.tribe-common-c-svgicon { @apply text-indigo-600 group-hover:text-white; }
+.tribe-events-c-subscribe-dropdown__list { @apply bg-white shadow-md; }
+.tribe-events-c-subscribe-dropdown__list-item-link { @apply transition-all duration-300 hover:text-indigo-600; }
+#event-meta a { @apply text-indigo-600 transition-all font-normal duration-300 hover:text-black !important; }
+#event-meta dt { @apply font-normal; }
+.tribe-events-single-section-title { @apply font-bold; }
+.tribe-common-g-row { @apply max-w-full; }
+.tribe-events-content a { @apply text-indigo-600 transition-all duration-300 hover:text-black font-normal; }
+.tribe-events-meta-group { @apply border-b border-solid border-indigo-200 md:border-none py-4; }
+#event-footer li span { @apply flex-1; }
+#event-footer li a { @apply flex items-center; }
+#event-footer li span { @apply truncate; }
+.tribe-events-meta-group:last-child { @apply border-none; }
+.tribe-events-content ol,
+.tribe-events-content p,
+.tribe-events-content ul { @apply text-base; }
+.tribe-events-c-small-cta__price { @apply rounded-full mt-2 inline-block py-0.5 px-3 text-white bg-indigo-600 text-sm !important; }
+.tribe-events-c-subscribe-dropdown { @apply m-0 !important; }
+.tribe-common .tribe-events-c-subscribe-dropdown .tribe-common-c-btn-border { @apply p-2 !important; }
+.tribe-events .tribe-events-c-subscribe-dropdown .tribe-events-c-subscribe-dropdown__button-text { @apply text-base !important; }
+.tribe-events-c-subscribe-dropdown__button-text { @apply pl-2 !important; }
+.tribe-common .tribe-events-c-subscribe-dropdown .tribe-common-c-btn-border .tribe-common-c-svgicon { @apply mr-2 !important; }
+.tribe-events-c-search__button { @apply rounded-full hover:bg-black transition-all duration-300 hover:opacity-100 !important;  }

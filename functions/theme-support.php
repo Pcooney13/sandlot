@@ -5,6 +5,8 @@ function theme_setup() {
     add_theme_support( 'post-thumbnails' );
     // Menus
     add_theme_support( 'menus' );
+    // Block editor CSS
+    add_theme_support( 'editor-styles' );
     register_nav_menus([
         'main-menu'         => __( 'Main Menu', 'site' ),
         'footer-menu'       => __( 'Footer Menu', 'site' ),
@@ -12,7 +14,13 @@ function theme_setup() {
 }
 add_action('after_setup_theme', 'theme_setup');
 
-// Get Menu Items
+// Register Google Maps
+function my_acf_init() {
+    acf_update_setting('google_api_key', 'AIzaSyDuXxSaiMJiAPGIFtB80KqHUPjPf_gAR4g');
+}
+add_action('acf/init', 'my_acf_init');
+
+// Get Menu For Nav Walker
 function nav_walker($location_id) {
     // Finding Menus in Wordpress
     $menus = wp_get_nav_menus();
@@ -28,6 +36,13 @@ function nav_walker($location_id) {
         return $menu_items;
     }
 }
+
+// ALLOW SVGS IN THE MEDIA UPLOADER
+function cc_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
 
 // REMOVE COMMENTS
 add_action('admin_init', function () {

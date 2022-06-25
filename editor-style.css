@@ -1,0 +1,6 @@
+*, body {
+    background: yellow;
+}
+.text-orange {
+    color: red!important;
+}

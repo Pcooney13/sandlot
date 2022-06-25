@@ -1,12 +1,14 @@
-<?php
-    include(locate_template('templates/header.php')); 
+<?php 
+include(locate_template('templates/header.php'));
 
-    $menu = nav_walker('main-menu');
+if ( have_posts() ) {
+	while ( have_posts() ) { the_post();
+	    if (get_the_content()) {
+			the_content(); 
+		} else {
+			echo '<div class="max-w-6xl mx-auto my-20">no content</div>';
+		} 
+	}
+}
 
-    var_dump($menu[1]);
-    foreach ($menu as $key => $link) {
-        echo '<a href=" ' . $link->url . ' " class="text-white tracking-wider transition-all duration-300 hover:text-bright-orange pl-4 inline md:hidden lg:inline">' . $link->title . '</a>';
-    }    
-
-    include(locate_template('templates/footer.php')); 
-?>
+include(locate_template('templates/footer.php')); ?>
